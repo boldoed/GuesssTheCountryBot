@@ -13,7 +13,13 @@ WRONG = 0
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    mess = f"""Привет, <b>{message.from_user.username}</b>!
+    if message.from_user.username != None:
+        mess = f"""Привет, <b>{message.from_user.username}</b>!
+Ты хочешь начать угадывать?
+Если да, нажми "начать". 
+Для дополнотельной информациии нажми <b>/help</b>"""
+    else:
+        mess = f"""Привет, <b>{message.from_user.last_name} {message.from_user.first_name}</b>!
 Ты хочешь начать угадывать?
 Если да, нажми "начать". 
 Для дополнотельной информациии нажми <b>/help</b>"""
@@ -27,7 +33,13 @@ def start(message):
 
 @bot.message_handler(commands=['help'])
 def help(message):
-    mess = f"""Привет, <b>{message.from_user.username}</b>!
+    if message.from_user.username != None:
+        mess = f"""Привет, <b>{message.from_user.username}</b>!
+Этот бот поможет тебе проверить знания флагов стран или просто развлечься.
+Вот список доступных тебе команд:
+<b>/start</b> - начать работу с ботом"""
+    else:
+        mess = f"""Привет, <b>{message.from_user.last_name} {message.from_user.first_name}</b>!
 Этот бот поможет тебе проверить знания флагов стран или просто развлечься.
 Вот список доступных тебе команд:
 <b>/start</b> - начать работу с ботом"""
