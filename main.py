@@ -60,13 +60,13 @@ def get_user_text(message):
     global RIGHT, WRONG
     if message.text.lower() == 'начать':
         main_game(message)
-    elif message.text == country_dict[pic.upper()]: 
+    elif message.text.lower().capitalize() == country_dict[pic.upper()]: 
         RIGHT += 1
         bot.send_message(message.chat.id, f"""<b>Правильно!</b> 
 Правильных: {RIGHT}
 Неправильных: {WRONG}""", parse_mode='html')
         main_game(message)
-    elif message.text != country_dict[pic.upper()] and message.text in rand:
+    elif message.text.lower().capitalize() != country_dict[pic.upper()] and message.text in rand:
         WRONG += 1
         bot.send_message(message.chat.id, f"""<b>Неправильно(</b>
 Правильных: {RIGHT}
@@ -75,8 +75,7 @@ def get_user_text(message):
     else:
         bot.send_message(message.chat.id, """Я тебя не понимаю. Вот список доступных тебе команд: 
 <b>/start</b> - начать работу с ботом.
-<b>/help</b> - узнать дополнительную информацию.
-<b>/stat</b> - узнать статистику""", parse_mode='html')
+<b>/help</b> - узнать дополнительную информацию.""", parse_mode='html')
 
 
 
