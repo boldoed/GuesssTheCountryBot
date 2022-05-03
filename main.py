@@ -5,8 +5,8 @@ from random import choice, shuffle
 from country_dict import country_dict, dict_country
 
 bot = telebot.TeleBot('5321028088:AAEXqF0H3Lh_GBiPdLdR8ltA_91D1TzGcbk')
-questions = ['какой страны этот флаг?', 'что же это за страна?', 'какая страна?', 'флаг какой страны ты видишь?',
-             'а это что за страна?']
+questions = ['Какой страны этот флаг?', 'Что же это за страна?', 'Какая страна?', 'Флаг какой страны ты видишь?',
+             'А а это что за страна?']
 RIGHT = 0
 WRONG = 0
 
@@ -30,8 +30,7 @@ def help(message):
     mess = f"""Привет, <b>{message.from_user.username}</b>!
 Этот бот поможет тебе проверить знания флагов стран или просто развлечься.
 Вот список доступных тебе команд:
-<b>/start</b> - начать работу с ботом
-<b>/stop</b> - сбросить результат"""
+<b>/start</b> - начать работу с ботом"""
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
     start = types.KeyboardButton('/start')
     markup.add(start)
@@ -69,6 +68,7 @@ def get_user_text(message):
     elif message.text.lower().capitalize() != country_dict[pic.upper()] and message.text in rand:
         WRONG += 1
         bot.send_message(message.chat.id, f"""<b>Неправильно(</b>
+Правильный ответ: <strong>{country_dict[pic.upper()]}</strong>
 Правильных: {RIGHT}
 Неправильных: {WRONG}""", parse_mode='html')
         main_game(message)
@@ -88,9 +88,10 @@ def pic_list():
 
 def random_country(right):
     random_country = []
+    val = list(country_dict.values())
     random_country.append(country_dict[right.upper()])
+    val.remove(country_dict[right.upper()])
     for i in range(3):
-        val = list(country_dict.values())
         rand = choice(val)
         random_country.append(rand)
         val.remove(rand)
