@@ -71,13 +71,13 @@ def get_user_text(message):
     global RIGHT, WRONG
     if message.text.lower() == 'начать':
         main_game(message)
-    elif message.text.lower().capitalize() == country_dict[pic.upper()]:
+    elif message.text == country_dict[pic.upper()]:
         RIGHT += 1
         bot.send_message(message.chat.id, f"""<b>Правильно!</b> 
 Правильных: {RIGHT}
 Неправильных: {WRONG}""", parse_mode='html')
         main_game(message)
-    elif message.text.lower().capitalize() != country_dict[pic.upper()] and message.text in rand:
+    elif message.text != country_dict[pic.upper()] and message.text in rand:
         WRONG += 1
         bot.send_message(message.chat.id, f"""<b>Неправильно(</b>
 Правильный ответ: <strong>{country_dict[pic.upper()]}</strong>
