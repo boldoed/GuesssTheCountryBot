@@ -84,6 +84,9 @@ def get_user_text(message):
 Правильных: {RIGHT}
 Неправильных: {WRONG}""", parse_mode='html')
         main_game(message)
+    elif message.text == 'здесь если ты не мент то ты мусор':
+        music = open('egg.mp3', 'rb')
+        bot.send_audio(message.chat.id, music)
     else:
         bot.send_message(message.chat.id, """Я тебя не понимаю. Вот список доступных тебе команд: 
 <b>/start</b> - начать работу с ботом.
