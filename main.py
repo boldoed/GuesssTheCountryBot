@@ -4,7 +4,7 @@ import os
 from random import choice, shuffle
 from country_dict import country_dict, dict_country
 
-bot = telebot.TeleBot('5321028088:AAEXqF0H3Lh_GBiPdLdR8ltA_91D1TzGcbk')
+bot = telebot.TeleBot('5321028088:AAFyxn07AGt6k0sV97FXQcbZkEqUcxJEoIs')
 questions = ['Какой страны этот флаг?', 'Что же это за страна?', 'Какая страна?', 'Флаг какой страны ты видишь?',
              'А а это что за страна?']
 RIGHT = 0
@@ -76,6 +76,9 @@ def get_user_text(message):
         bot.send_message(message.chat.id, f"""<b>Правильно!</b> 
 Правильных: {RIGHT}
 Неправильных: {WRONG}""", parse_mode='html')
+        if RIGHT % 5 == 0:
+            bot.send_message(message.chat.id, f"""Ты угадал аж {RIGHT} стран! Продолжай в том же духе!
+            """, parse_mode='html')
         main_game(message)
     elif message.text != country_dict[pic.upper()] and message.text in rand:
         WRONG += 1
