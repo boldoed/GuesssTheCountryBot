@@ -4,7 +4,7 @@ import os
 from random import choice, shuffle
 from country_dict import country_dict, dict_country
 
-bot = telebot.TeleBot('5321028088:AAFyxn07AGt6k0sV97FXQcbZkEqUcxJEoIs')
+bot = telebot.TeleBot('TOKEN')
 questions = ['Какой страны этот флаг?', 'Что же это за страна?', 'Какая страна?', 'Флаг какой страны ты видишь?',
              'А а это что за страна?']
 RIGHT = 0
